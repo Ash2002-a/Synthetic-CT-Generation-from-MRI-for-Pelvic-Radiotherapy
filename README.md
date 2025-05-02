@@ -2,13 +2,66 @@
 
 This project implements and compares different deep learning approaches for transforming MRI images into synthetic CT images, specifically focusing on Pix2Pix GAN and Autoencoder architectures. The implementation is designed for radiotherapy planning applications.
 
-## Project Overview
 
-The project includes implementations of:
-- Pix2Pix GAN for MRI-to-CT translation
-- Autoencoder baseline model
-- Comprehensive evaluation scripts for both models
-- Quantitative analysis using multiple metrics (MAE, MSE, PSNR, SSIM, SNR)
+## 🧬 Project Overview
+
+This project investigates MR-conditioned CT synthesis using both **generative models** and **discriminative baselines**. The aim is to produce realistic, clinically viable synthetic CT volumes to support MRI-only radiotherapy workflows.
+
+Key goals include:
+- Evaluating whether generative approaches (e.g., GANs, diffusion models) outperform conventional discriminative models.
+- Analysing the impact of training strategies, regularisation, and architectural choices.
+- Assessing the clinical utility of synthetic CT in terms of image quality and radiotherapy relevance.
+
+---
+
+## 🧠 Model Architectures
+
+### Generative Models
+- **3D GANs** for volumetric CT synthesis from corresponding MRI inputs.
+- **Denoising Diffusion Models** for progressive refinement of synthetic volumes.
+- Conditioning implemented via concatenation or feature-based encoding of MRI volumes.
+
+### Baseline Models
+- **Supervised Autoencoders** trained to regress CT from MRI using pixel-wise losses.
+- Discriminative pipelines for comparison against generative counterparts.
+
+All architectures are implemented in PyTorch or TensorFlow and support 3D medical image inputs.
+
+---
+
+## 🧪 Evaluation and Clinical Validation
+
+The synthetic CT outputs are evaluated using:
+- **Voxel-level similarity metrics**: MAE, MSE, SSIM
+- **Structural and clinical relevance**: PSNR, DICE (organ-specific), and volume similarity
+- **Downstream tasks** (e.g., dosimetry, segmentation surrogate performance — optional extension)
+
+Statistical significance testing (e.g., paired t-tests) is conducted on results across patient volumes.
+
+---
+
+## 📁 Dataset
+
+The project uses public datasets provided through the **SynthRAD2023 Challenge**, including:
+- T2-weighted pelvic MRI volumes
+- Co-registered ground truth CT scans
+- 3D volumes with expert-aligned anatomy
+
+Data is preprocessed (resampled, normalized) prior to model input.
+
+> **Note:** If you use this data, please follow the terms set by the dataset providers.
+
+---
+
+## 📊 Example Results
+
+Example visualizations and results include:
+- Input MR slices alongside synthetic and ground-truth CT
+- Quantitative metrics across validation cohorts
+- Side-by-side comparisons of GAN vs diffusion vs baseline models
+- Analysis of model robustness across patient cases
+
+---
 
 
 ## Installation
